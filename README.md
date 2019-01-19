@@ -14,9 +14,9 @@ Don't sweat it, that's what **[whatsthecodeforthat.com](https://whatsthecodefort
 
 ## Contributing
 
-If there's a section, language, or snippet you think is missing or needs updating, please don't hesitate to help out. When making modifications, please respect the following general guidelines.
+If there's a section, language, or snippet you think is missing or needs updating, please don't hesitate to help out. When making modifications, please follow these general guidelines:
 
-### Content Sections
+### - Content Sections
 
 If you're adding a new section or subsection to [/content](./content), please try to:
 
@@ -26,7 +26,7 @@ If you're adding a new section or subsection to [/content](./content), please tr
 - ensure an `_index.md` with `title` front-matter for each folder
 - limit to depth of content to section and subsection, no more and no less
 
-### Languages
+### - Languages
 
 If you're adding a new language, please try to:
 
@@ -34,7 +34,7 @@ If you're adding a new language, please try to:
 - add the language to the list in [config.toml](./config.toml) in alphabetical order
 - ensure the language is suitable to be included in most content sections
 
-### Snippet
+### - Snippets
 
 If you're adding a language snippet to an existing content section, please try to:
 
@@ -42,6 +42,7 @@ If you're adding a language snippet to an existing content section, please try t
 - limit the code sample to using the standard library
 - keep the code equivalent to other examples in the same content section, including variable names and values, use of print statements, etc.
 - avoid over-optimization, instead strive for simplicity and the general use case
+- the snippet file should contain one code block (marked by triple ticks), and any commentary should be done in langauge-specific comments
 
 ## Running the Site Locally
 
