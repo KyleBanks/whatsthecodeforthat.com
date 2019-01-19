@@ -20,11 +20,11 @@ If there's a section, language, or snippet you think is missing or needs updatin
 
 If you're adding a new section or subsection to [/content](./content), please try to:
 
+- add the section or subsection to the map in [config.toml](./config.toml) in the order you want it to appear
 - order the content in order of sophistication; for example, arrays come after primitives, classes come after functions, etc.
-- reorder surrounding folder numeric prefixes in lieu of a better system 
 - try to avoid language-specific content and aim to focus on situations common to various languages; for example, `goroutines` are unique to the go language, so instead of a `goroutines` section it makes sense to have a `concurrency` section
 - ensure an `_index.md` with `title` front-matter for each folder
-- limit to depth of content to section and subsection, no more and no less
+- limit the depth of content to section and subsection, no more and no less
 
 ### - Languages
 

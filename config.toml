@@ -4,6 +4,39 @@ title = "whatsthecodeforthat.com"
 theme = "hugo-paper"
 
 [params]
+
+	# Defines the ordering of the site content. Folder and subsection strings 
+	# correlate to folder names in the content directory.
+	content = [
+		{folder = "basics", subsections = ["hello-world", "primitives", "comments"]},
+		
+		{folder = "strings", subsections = [
+			"initialization", "lower-upper-case", "substring", "index-of-substring", "replace-substring"
+		]},
+
+		{folder = "arrays", subsections = [
+			"initialization", "iterating", "indexing", "appending"
+		]},
+
+		{folder = "maps", subsections = [
+			"initialization", "iterating", "indexing"
+		]},
+
+		{folder = "flow-control", subsections = [
+			"if", "for", "while"
+		]},
+
+		{folder = "functions", subsections = [
+			"declaration", "invocation"
+		]},
+
+		{folder = "custom-types", subsections = [
+			"definition", "instance-methods"
+		]}
+	]
+
+	# Used for language filtering only
+	# TODO: dynamically determine language list at build time based on content dir
 	languages = [
 		"go",
 		"java",

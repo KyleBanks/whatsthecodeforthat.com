@@ -1,5 +1,7 @@
 {{ partial "header.html" . }}
 
+{{ $siteScope := . }}
+
 <article class="post first-entry">
 
     <section class="intro">
@@ -9,71 +11,54 @@
     <section class="table-of-contents">
         <h2>Contents</h2>
         <ul>
-        {{ $sectionNum := 0 }}
-        {{ range sort .Site.Pages "Path" "asc" }}
-            {{ if eq (len (split .Path "/")) 2 }}
-                {{ $section := index (split .Path "/") 0 }}
-                {{ $sectionNum = add $sectionNum 1 }}
-                <li class='section-header'>{{ partial "section-link-href.html" (dict "sectionNum" $sectionNum "title" .Title) }}</li>
-        
-                <ul>
-                {{ $subSectionNum := 0 }}
-                {{ range sort .Site.Pages "Path" "asc" }}
-                    {{ $components := split .Path "/" }}
-                    {{ if eq (index $components 0) $section }}
-                        {{ if eq (len $components) 3 }}
-                            {{ if eq (index $components 2) "_index.md" }}
-                                {{ $subSectionNum = add $subSectionNum 1 }}
-                                    <li>{{ partial "section-link-href.html" (dict "sectionNum" $sectionNum "subSectionNum" $subSectionNum "title" .Title) }}</li>
-                            {{ end }}
-                        {{ end }} 
-                    {{ end }} 
-                {{ end }}
-                </ul>
+        {{ range $sectionNum, $content := .Site.Params.content }}
+        	{{ $folder := .folder }}
+            {{ $section := $siteScope.GetPage (path.Join $folder "_index.md") }}
+            <li class='section-header'>
+            	{{ partial "section-link-href.html" (dict "sectionNum" (add $sectionNum 1) "title" $section.Title) }}
+            </li>
 
+            <ul>
+            {{ range $subsectionNum, $subsectionFolder := .subsections }}
+            	{{ $subsection := $siteScope.GetPage (path.Join $folder $subsectionFolder "_index.md") }}
+                <li>
+                	{{ partial "section-link-href.html" (dict "sectionNum" (add $sectionNum 1) "subsectionNum" (add $subsectionNum 1) "title" $subsection.Title) }}
+                </li>
             {{ end }}
+        	</ul>
         {{ end }}
         </ul>
     </section>
 
+    <section class="content">
+    	{{ range $sectionNum, $content := .Site.Params.content }}
+    		{{ $folder := .folder }}
+            {{ $section := $siteScope.GetPage (path.Join $folder "_index.md") }}
+        	<h2 id="{{ chomp (partial "section-link.html" (dict "title" $section.Title)) }}">
+        		{{ add $sectionNum 1 }}. {{ $section.Title }}
+        	</h2>
+        	{{ $section.Content }}
 
-    {{ $sectionNum := 0 }}
-    {{ range sort .Site.Pages "Path" "asc" }}
-        {{ if eq (len (split .Path "/")) 2 }}
-            {{ $section := index (split .Path "/") 0 }}
-            {{ $sectionNum = add $sectionNum 1 }}
-            <h2 id="{{ chomp (partial "section-link.html" (dict "title" .Title)) }}">{{ $sectionNum }}. {{ .Title }}</h2>
-            {{ .Content }}
+        	{{ range $subsectionNum, $subsectionFolder := .subsections }}
+            	{{ $subsection := $siteScope.GetPage (path.Join $folder $subsectionFolder "_index.md") }}
+				<h3 id="{{ chomp (partial "section-link.html" (dict "title" $subsection.Title)) }}">
+					{{ add $sectionNum 1 }}.{{ add $subsectionNum 1 }}. {{ $subsection.Title }}
+				</h3>
+                {{ $subsection.Content }}
 
-            {{ $subSectionNum := 0 }}
-            {{ range sort .Site.Pages "Path" "asc" }}
-                {{ $components := split .Path "/" }}
-                {{ if eq (index $components 0) $section }}
-                    {{ if eq (len $components) 3 }}
-                        {{ if eq (index $components 2) "_index.md" }}
-                            {{ $subSectionNum = add $subSectionNum 1 }}
-                        
-                            <h3 id="{{ chomp (partial "section-link.html" (dict "title" .Title)) }}">{{ $sectionNum }}.{{ $subSectionNum }}. {{ .Title }}</h3>
-                            {{ .Content }}     
-                        {{ else }}
-                            {{ $title := replace (index $components 2) ".md" "" }}
-
-                            <section class="lang-{{$title}}">
-                                <h4>
-                                    {{ $title }}
-                                    <div class="permalink"><a href="{{ .Permalink }}">permalink</a></div>
-                                </h4>
-                                {{ .Content }}
-                            </section>
-                        {{ end }}
-                    {{ end }} 
-                {{ end }} 
+                {{ range $subsection.Pages }}
+                    {{ $lang := .File }}
+                    <section class="lang-{{ $lang }}">
+                        <h4>
+                            {{ $lang }}
+                            <div class="permalink"><a href="{{ .Permalink }}">permalink</a></div>
+                        </h4>
+                        {{ .Content }}
+                    </section>
+                {{ end }}
             {{ end }}
-            </ul>
-
 		{{ end }}
-	{{ end }}
-
+	</section>
 </article>
 
 {{ partial "footer.html" . }}
