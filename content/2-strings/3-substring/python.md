@@ -1,0 +1,3 @@
+```
+substr = s[start:end]
+```

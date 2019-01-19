@@ -1,0 +1,3 @@
+<a href="#{{ chomp (partial "section-link" .) }}">
+    {{ .sectionNum }}.{{ if isset . "subSectionNum" }}{{ .subSectionNum }}.{{ end }} {{ .title }}
+</a>

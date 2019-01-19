@@ -1,0 +1,3 @@
+```
+arr = append(arr, val)
+```

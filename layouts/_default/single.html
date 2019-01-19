@@ -1,0 +1,12 @@
+{{ partial "header.html" . }}
+
+<article class="post post-view">
+	<header class="post-header">
+		<h2 class="post-title">{{ .Parent.Parent.Title }} > {{ .Parent.Title }}</h2>
+		{{ $components := split .Path "/" }}
+		<h4>{{ replace (index $components 2) ".md" "" }}</h4>
+	</header>
+	<section>{{ .Content }}</section>
+</article>
+
+{{ partial "footer.html" . }}

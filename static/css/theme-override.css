@@ -1,0 +1,99 @@
+/* General */
+a {
+	text-decoration: underline;
+}
+ul {
+	padding: 0 1.5em;
+}
+pre {
+	tab-size: 2;
+	font-size: 0.8em;
+}
+
+p code {
+	padding: 0 0.25em;
+	background: #282c34;
+	color: #abb2bf;
+	font-size: 1em;
+}
+
+/* Header */
+header img {
+	margin: -6px 6px 0 0;
+}
+
+header a {
+	text-decoration: none;
+}
+
+/* Content Body */
+main .first-entry {
+	padding-top: 1em;
+}
+main h1, main h2, main h3, main h4, main h5, main h6 {
+	margin: 1.25em 0;
+}
+main h1, main h2, main h3 {
+	text-decoration: underline;
+}
+main h4 {
+	background: #f9f9f9;
+	border: 1px #eee solid;
+	padding: 0.5em;
+}
+main h4 .permalink {
+	float: right;
+	font-size: 0.6em;
+	font-weight: normal;
+}
+main h4 .permalink:after {
+	clear: both;
+}
+
+/* Table of Contents */
+.table-of-contents a {
+	text-decoration: none;
+}
+.table-of-contents a:hover {
+	text-decoration: underline;
+}
+.table-of-contents ul {
+	list-style: none;
+}
+.table-of-contents .section-header a {
+	font-weight: bold;
+}
+
+/* Filter */
+.filter {
+	position: fixed;
+	top: 50px;
+	z-index: 999;
+}
+.filter select {
+	font-size: 16px;
+	font-weight: bold;
+	text-align-last: center;
+	height: 34px;
+	cursor: pointer;
+	padding: 0 1em;
+	background: #fff;
+	text-align: right;
+	border: 2px solid;
+	border-radius: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+/* Intro */
+.intro blockquote {
+	font-size: 0.9em;
+	border-left: 2px solid;
+	padding-left: 6px;
+}
+
+/* Code Blocks */
+.hljs-comment, .hljs-quote {
+	color: #ccc;
+}

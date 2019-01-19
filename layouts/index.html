@@ -1,0 +1,79 @@
+{{ partial "header.html" . }}
+
+<article class="post first-entry">
+
+    <section class="intro">
+        {{ .Content }}
+    </section>
+
+    <section class="table-of-contents">
+        <h2>Contents</h2>
+        <ul>
+        {{ $sectionNum := 0 }}
+        {{ range sort .Site.Pages "Path" "asc" }}
+            {{ if eq (len (split .Path "/")) 2 }}
+                {{ $section := index (split .Path "/") 0 }}
+                {{ $sectionNum = add $sectionNum 1 }}
+                <li class='section-header'>{{ partial "section-link-href.html" (dict "sectionNum" $sectionNum "title" .Title) }}</li>
+        
+                <ul>
+                {{ $subSectionNum := 0 }}
+                {{ range sort .Site.Pages "Path" "asc" }}
+                    {{ $components := split .Path "/" }}
+                    {{ if eq (index $components 0) $section }}
+                        {{ if eq (len $components) 3 }}
+                            {{ if eq (index $components 2) "_index.md" }}
+                                {{ $subSectionNum = add $subSectionNum 1 }}
+                                    <li>{{ partial "section-link-href.html" (dict "sectionNum" $sectionNum "subSectionNum" $subSectionNum "title" .Title) }}</li>
+                            {{ end }}
+                        {{ end }} 
+                    {{ end }} 
+                {{ end }}
+                </ul>
+
+            {{ end }}
+        {{ end }}
+        </ul>
+    </section>
+
+
+    {{ $sectionNum := 0 }}
+    {{ range sort .Site.Pages "Path" "asc" }}
+        {{ if eq (len (split .Path "/")) 2 }}
+            {{ $section := index (split .Path "/") 0 }}
+            {{ $sectionNum = add $sectionNum 1 }}
+            <h2 id="{{ chomp (partial "section-link.html" (dict "title" .Title)) }}">{{ $sectionNum }}. {{ .Title }}</h2>
+            {{ .Content }}
+
+            {{ $subSectionNum := 0 }}
+            {{ range sort .Site.Pages "Path" "asc" }}
+                {{ $components := split .Path "/" }}
+                {{ if eq (index $components 0) $section }}
+                    {{ if eq (len $components) 3 }}
+                        {{ if eq (index $components 2) "_index.md" }}
+                            {{ $subSectionNum = add $subSectionNum 1 }}
+                        
+                            <h3 id="{{ chomp (partial "section-link.html" (dict "title" .Title)) }}">{{ $sectionNum }}.{{ $subSectionNum }}. {{ .Title }}</h3>
+                            {{ .Content }}     
+                        {{ else }}
+                            {{ $title := replace (index $components 2) ".md" "" }}
+
+                            <section class="lang-{{$title}}">
+                                <h4>
+                                    {{ $title }}
+                                    <div class="permalink"><a href="{{ .Permalink }}">permalink</a></div>
+                                </h4>
+                                {{ .Content }}
+                            </section>
+                        {{ end }}
+                    {{ end }} 
+                {{ end }} 
+            {{ end }}
+            </ul>
+
+		{{ end }}
+	{{ end }}
+
+</article>
+
+{{ partial "footer.html" . }}

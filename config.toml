@@ -1,0 +1,15 @@
+baseURL = "https://whatsthecodeforthat.com/"
+languageCode = "en-us"
+title = "whatsthecodeforthat.com"
+theme = "hugo-paper"
+
+[params]
+	languages = [
+		"go",
+		"java",
+		"javascript",
+		"python"
+	]
+
+	author = "Kyle Banks"
+	description = "Reference snippets for common tasks in various programming languages."

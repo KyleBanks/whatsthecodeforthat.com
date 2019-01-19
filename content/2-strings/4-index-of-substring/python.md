@@ -1,0 +1,3 @@
+```
+idx = s.index(substring)
+```
