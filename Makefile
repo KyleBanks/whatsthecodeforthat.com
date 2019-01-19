@@ -4,9 +4,13 @@ CACHE_MAX_AGE="259200" # 3 Days
 CLOUDFRONT_ID="E2ELSRIPC4QQ55"
 AWS_PROFILE="whatsthecodeforthat"
 
-build: 
-	HUGO_ENV="production" hugo
+build: | clean	
+	HUGO_ENV="production" hugo -d $(DEPLOY_DIR)
 .PHONY: build
+
+clean: 
+	rm -rf $(DEPLOY_DIR)
+.PHONY: clean
 
 deploy: | build
 	aws s3 sync \

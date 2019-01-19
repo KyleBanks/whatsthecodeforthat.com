@@ -1,4 +1,4 @@
-# [whatsthecodeforthat.com](https://whatsthecodeforthat.com)
+# [💻 whatsthecodeforthat.com](https://whatsthecodeforthat.com)
 
 As developers we often switch between various languages, and sometimes it's difficult to remember how to do the little things. 
 
@@ -42,6 +42,14 @@ If you're adding a language snippet to an existing content section, please try t
 - limit the code sample to using the standard library
 - keep the code equivalent to other examples in the same content section, including variable names and values, use of print statements, etc.
 - avoid over-optimization, instead strive for simplicity and the general use case
+
+## Running the Site Locally
+
+This project uses [hugo](https://gohugo.io/) to generate a static website from markdown, so you'll need to have [hugo installed](https://gohugo.io/getting-started/quick-start/#step-1-install-hugo) to run locally. After that, use the `make` target like so to have the site generated, auto-reloaded on changes, and your browser opened:
+
+```
+$ make local
+```
 
 ## License 
 
