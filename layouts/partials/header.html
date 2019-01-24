@@ -8,16 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title -->
-  {{- $title := "" }}
-  {{- if not .IsHome }}
-    {{- if eq .Kind "page" }}
-      {{- $title = add $title (string .File) }}
-      {{- $title = add $title " | "}}
-      {{- $title = add $title .Parent.Title }}
-      {{- $title = add $title " | " }}
-    {{- end }}
-  {{- end }}
-  {{- $title = add $title .Site.Title }}
+  {{- $title := "" -}}
+  {{- if not .IsHome -}}
+    {{- if eq .Kind "page" -}}
+      {{- $title = chomp (partial "snippet-title.html" .) -}}
+      {{- $title = add $title " | " -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $title = add $title .Site.Title -}}
+  {{- $title = trim $title "\n" -}}
   <title>{{- $title -}}</title>
 
   <!-- Social -->

@@ -1,0 +1,3 @@
+```
+var i = parseInt(str);
+```

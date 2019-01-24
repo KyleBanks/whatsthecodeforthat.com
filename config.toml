@@ -11,11 +11,11 @@ theme = "hugo-paper"
 		{folder = "basics", subsections = ["hello-world", "primitives", "comments"]},
 		
 		{folder = "strings", subsections = [
-			"initialization", "lower-upper-case", "substring", "index-of-substring", "replace-substring"
+			"initialization", "lower-upper-case", "substring", "index-of-substring", "replace-substring", "integer-parsing", "float-parsing"
 		]},
 
 		{folder = "arrays", subsections = [
-			"initialization", "iterating", "indexing", "appending"
+			"initialization", "iterating", "indexing", "appending", "joining"
 		]},
 
 		{folder = "maps", subsections = [

@@ -1,0 +1,4 @@
+{{ $components := split .Path "/" }}
+{{ $lang := replace (index $components 2) ".md" "" }}
+
+What's the code for {{ .Parent.Title }} in {{ $lang }}?
